@@ -123,3 +123,40 @@ Semua error ke client disanitasi — tidak membocorkan path, stack trace, atau c
 - Saat Stage 0 belum ada `AGENTS.md`; root `AGENTS.md` kemudian ditambahkan pada governance follow-up dan sekarang menjadi aturan utama.
 - Branch Stage 0: `feat/ai-interviewer-stage-00` (sesuai kontrak `feat/ai-interviewer-stage-XX`).
 - Stack terkunci dipatuhi mulai Stage 1; Stage 0 tidak menambah dependency/migration/endpoint/UI.
+
+## 10. Konvensi Git — Branch, Commit, PR (Wajib)
+
+> Revisi 2026-09-15: Penamaan `feat(stage-N)` dihentikan.
+
+### Branch
+- Format: `feat/<feature-kebab>` — bukan `feat/ai-interviewer-stage-XX`
+- Contoh: `feat/scaffold`, `feat/db-session`, `feat/cv-upload`, `feat/interview-plan`, `feat/interview-graph`, `feat/evaluation`, `feat/report`, `feat/frontend-mvp`, `feat/observability`
+- Untuk bugfix setelah merge: `fix/<feature>-<issue-kebab>` contoh `fix/db-migration-uuid`
+
+### Commit
+- Format: `feat(<scope>): <deskripsi imperatif>` atau `fix(<scope>): <deskripsi>`
+- `<scope>` = fitur (`scaffold`, `db`, `upload`, `agent`, `interview`, `evaluation`, `report`, `web`, `infra`), BUKAN `stage-1`
+- Stage number ditaruh di body commit, bukan di title
+- Contoh:
+  ```
+  feat(scaffold): init Next.js + FastAPI + postgres health check
+
+  Stage 1 — Scaffold and Quality Gates
+  Docs: PRD.md, ARCHITECTURE.md
+  ```
+  ```
+  feat(db): session and document tables with Alembic migration
+
+  Stage 2 — Database and Session API
+  Closes Stage 2 AC-01..05
+  ```
+
+### Pull Request
+- Title: sama dengan commit title `feat(<scope>): <deskripsi>` — JANGAN pakai `feat(stage-N)`
+- Description WAJIB berisi:
+  - `Stage N — <Nama Tahap>` 
+  - Link ke `docs/AI_INTERVIEWER_STEP_BY_STEP_PROMPTS.md#Prompt N`
+  - Checklist acceptance criteria
+  - Command yang dijalankan + hasil
+- Label: `stage-N` jika perlu, tapi title tetap feature-based
+
