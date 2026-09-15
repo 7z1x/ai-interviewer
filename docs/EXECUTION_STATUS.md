@@ -1,11 +1,14 @@
 # Execution Status
 
 ## Current State
-- Current stage: 0
-- Status: verified
-- Branch: feat/ai-interviewer-stage-00
-- Last commit: feat(stage-0): audit and design — adc1fec6ecc103bb60e1eb993981458845d90996
-- Updated at: 2026-09-15T02:25:00Z
+- Current product stage: 0
+- Product stage status: verified
+- Current task: documentation and agent-governance hardening
+- Task status: verified; governance changes are tracked on `docs/project-governance`
+- Branch: docs/project-governance
+- Base commit: e35a372 (merge of Stage 0 into main)
+- Last verified product commit: 5cbbee3 feat(stage-0): audit and design
+- Updated at: 2026-09-15T04:21:51Z
 
 ## Stage Checklist
 - [x] Stage 0 — Audit and design
@@ -23,6 +26,11 @@
 - [ ] Stage 12 — Final verification and deployment
 
 ## Last Verified Commands
+- Governance validation — local Markdown link check: `LOCAL_MARKDOWN_LINKS=OK`; no missing relative documentation targets.
+- Governance validation — command: `git diff --check` — Result: passed; only expected Windows LF/CRLF notices were reported.
+- Governance validation — command: `rg` stale/duplicate check — Result: the remaining statement that `AGENTS.md` did not exist is explicitly preserved as historical Stage 0 command output.
+- Current governance task — command: `git status --short --branch`, `git remote -v`, `git log -3 --oneline --decorate` — Result: local checkout clean before changes, branch `main` matched `origin/main` at merge commit `e35a372`; work continued on `docs/project-governance`.
+- Historical Stage 0 evidence below is preserved as evidence from that execution, not as current repository state.
 - Command: `git status` — Result: `On branch feat/ai-interviewer-stage-00, untracked docs/PRD.md, docs/ARCHITECTURE.md, docs/DATA_MODEL.md, docs/API_CONTRACT.md, docs/IMPLEMENTATION_PLAN.md` — working tree aman, branch baru dari main (80487d3).
 - Command: `git log --oneline -3` — Result: `80487d3 docs: add AI Interviewer step-by-step prompts` — repo baru 1 commit, belum ada scaffold.
 - Command: `ls -R` — Result: hanya `docs/AI_INTERVIEWER_STEP_BY_STEP_PROMPTS.md` sebelum Stage 0; AGENTS.md tidak ada.
@@ -30,10 +38,10 @@
 - Command: `git diff --stat` / `git status` setelah commit — Result: 5 file baru ter-commit (lihat laporan).
 
 ## Open Blockers
-- None — Stage 0 tidak terblokir. Catatan: review desain sebelum Stage 1 masih menunggu persetujuan pengguna (bukan blocker teknis).
+- None for the governance task. Stage 1 has not started.
 
 ## Next Allowed Action
-- Menunggu instruksi pengguna untuk Stage 1 — Scaffold and Quality Gates. Jangan mulai Stage 1 sebelum pengguna memerintahkan. Saat Stage 1 dimulai: baca ulang docs/PRD.md, docs/ARCHITECTURE.md, docs/DATA_MODEL.md, docs/API_CONTRACT.md, dan file ini; lalu scaffold `apps/web`, `apps/api`, `packages/contracts`, `infra/docker-compose.yml` + health endpoint.
+- Setelah governance branch dipublikasikan, tunggu instruksi eksplisit pengguna untuk merge atau memulai Stage 1 — Scaffold and Quality Gates. Stage 1 belum dimulai oleh perubahan dokumentasi ini.
 
 ## Stage 0 Verification Detail
 
@@ -43,8 +51,8 @@
 - [x] Non-goals dinyatakan eksplisit — PRD §5: voice, avatar, live coding, admin panel, production billing + OCR/RAG/billing di ARCHITECTURE §1.
 - [x] Tidak ada klaim bahwa fitur sudah bekerja — semua docs bertanda "Stage 0 — desain saja; tidak ada implementasi fitur" dan AC terukur dirujuk sebagai rencana, bukan hasil.
 
-### Audit Findings
+### Historical Audit Findings
 - Repo: `7z1x/ai-interviewer`, branch default `main`, 1 commit `80487d3`, working tree clean sebelumnya.
-- Tidak ada `AGENTS.md` — Kontrak Eksekusi Harian dari `docs/AI_INTERVIEWER_STEP_BY_STEP_PROMPTS.md` yang dipakai.
+- Saat audit Stage 0 belum ada `AGENTS.md`; file tersebut telah ditambahkan pada governance follow-up setelah merge.
 - Keputusan: pakai repo existing, tidak buat repo/folder baru, tidak campur aplikasi tidak relevan.
 - Tidak ada dependency/migration/endpoint/UI yang dibuat di Stage 0 — sesuai larangan "jangan membuat aplikasi, dependency, migration, endpoint, atau UI pada tahap ini".

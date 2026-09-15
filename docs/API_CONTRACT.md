@@ -103,7 +103,7 @@ Hapus draft yang belum dimulai.
 Upload 1 CV PDF per session.
 
 - **Request**: `multipart/form-data` field `file` (PDF). Header opsional `Idempotency-Key`.
-- **Validasi**: MIME `application/pdf`, ekstensi `.pdf`, magic bytes `%PDF`, `file_size ≤ 5MB` (konfigurasi), `page_count ≤ 10`, tidak terenkripsi, tidak kosong, tidak rusak.
+- **Validasi**: MIME `application/pdf`, ekstensi `.pdf`, magic bytes `%PDF`, `file_size ≤ 5 MiB` (5,242,880 bytes), `page_count ≤ 10`, tidak terenkripsi, tidak kosong, tidak rusak.
 - **201**
 ```json
 {
