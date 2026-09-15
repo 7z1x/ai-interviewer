@@ -1,6 +1,6 @@
 # IMPLEMENTATION PLAN — AI Interviewer
 
-> Checklist berurutan mengikuti `docs/AI_INTERVIEWER_STEP_BY_STEP_PROMPTS.md`. Stage 0 hanya desain — tidak ada kode fitur.
+> Checklist ringkas. Scope dan gate lengkap setiap tahap berada di [`docs/stages/`](stages/README.md). Stage 0 hanya desain — tidak ada kode fitur.
 
 ## Prinsip
 
@@ -11,7 +11,7 @@
 
 ## Stage 0 — Audit and Design [DONE - Stage ini]
 
-- [x] Periksa isi repo, struktur folder, package manager, konfigurasi, AGENTS.md (tidak ada).
+- [x] Periksa isi repo, struktur folder, package manager, dan konfigurasi. `AGENTS.md` belum ada saat audit awal dan ditambahkan pada governance follow-up.
 - [x] Tentukan: pakai repo existing `7z1x/ai-interviewer` (baru, 1 commit), tidak buat repo/folder baru.
 - [x] Buat `docs/PRD.md` (masalah, persona, journey, scope MVP, non-goals, FR, failure states, AC terukur).
 - [x] Buat `docs/ARCHITECTURE.md` (batas tanggung jawab, alur data, diagram Mermaid, stub provider, dua mode LLM, error handling & idempotency).
@@ -20,11 +20,19 @@
 - [x] Buat `docs/API_CONTRACT.md` (endpoint, request/response, validation, status code, traceability).
 - [x] Buat `docs/IMPLEMENTATION_PLAN.md` (file ini).
 - [x] Buat `docs/EXECUTION_STATUS.md`.
-- [ ] Review desain sebelum Stage 1 (persetujuan pengguna).
+- [x] Review desain dan perbaiki governance sebelum Stage 1.
+
+### Governance follow-up [DONE]
+
+- [x] Tambahkan root `AGENTS.md` sebagai aturan utama coding agent.
+- [x] Tambahkan `README.md` yang jujur terhadap status project.
+- [x] Pisahkan kontrak AI, testing, security/privacy, dan ADR.
+- [x] Pecah dokumen prompt menjadi Hermes runbook dan file per stage.
+- [x] Kunci batas upload MVP pada 5 MiB dan 10 halaman di dokumen terkait.
 
 **Quality gates**: 4 dokumen desain ada & konsisten, tiap requirement terpetakan ke endpoint+entitas, non-goals eksplisit, tidak ada klaim fitur bekerja.
 
-## Stage 1 — Scaffold and Quality Gates [NEXT]
+## Stage 1 — Scaffold and Quality Gates [NEXT PRODUCT STAGE]
 
 - [ ] Scaffold `apps/web` (Next.js TS), `apps/api` (FastAPI), `packages/contracts` atau kontrak sederhana, `infra/docker-compose.yml` (PostgreSQL).
 - [ ] `GET /health` terstruktur di backend.

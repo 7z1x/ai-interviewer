@@ -29,7 +29,7 @@ Non-persona MVP: recruiter, hiring manager, admin — tidak ada role terpisah di
 ### Journey Utama (Happy Path)
 1. User membuka Home → melihat daftar sesi sebelumnya.
 2. User klik "New Session" → isi `target_role`, `job_description`, pilih `language` (id/en).
-3. User upload CV PDF (1 file, ≤ batas ukuran/halaman) → sistem ekstrak teks per halaman → status `ready`.
+3. User upload CV PDF (1 file, maksimum 5 MiB dan 10 halaman) → sistem ekstrak teks per halaman → status `ready`.
 4. User klik "Generate Interview Plan" → sistem memanggil provider AI → menghasilkan ringkasan profil, skills dari CV, requirement JD, fit/gap, dan 5 pertanyaan awal (competency, objective, difficulty, expected_evidence) → simpan ke DB.
 5. User klik "Start Interview" → masuk Interview Room, melihat pertanyaan 1/5, progress bar.
 6. User mengetik jawaban → submit → sistem klasifikasi jawaban → jika jawaban vague/tidak relevan → 1 follow-up; jika cukup → lanjut pertanyaan berikutnya. Maks 5 utama + maks 1 follow-up per pertanyaan utama.
@@ -46,7 +46,7 @@ Non-persona MVP: recruiter, hiring manager, admin — tidak ada role terpisah di
 ## 5. Scope MVP
 
 **In:**
-- Upload 1 CV PDF per session, ekstraksi teks per halaman (text layer saja, tanpa OCR).
+- Upload 1 CV PDF per session (maksimum 5 MiB dan 10 halaman), ekstraksi teks per halaman (text layer saja, tanpa OCR).
 - Input target_role, job_description, language.
 - Generate interview plan 5 pertanyaan via LLM provider (stub + OpenCode).
 - LangGraph workflow interview teks (5 utama + 1 follow-up/pertanyaan), persist state.
@@ -117,9 +117,9 @@ Semua error ke client disanitasi — tidak membocorkan path, stack trace, atau c
 | AC-11 | Lint, type-check, test, build lulus di backend & frontend | CI quality gates |
 | AC-12 | Tidak ada secret/CV di log, repo, atau localStorage | Secret scan + log audit |
 
-## 9. Keputusan Audit Repo (Stage 0)
+## 9. Keputusan Audit Repo (Historical Stage 0 Snapshot)
 
 - Repo `7z1x/ai-interviewer` baru (1 commit), belum ada scaffold — keputusan: **pakai repo yang ada**, tidak membuat repo/folder baru, tidak mencampur dengan aplikasi tidak relevan.
-- Tidak ada `AGENTS.md` — Kontrak Eksekusi Harian dari `docs/AI_INTERVIEWER_STEP_BY_STEP_PROMPTS.md` menjadi acuan.
+- Saat Stage 0 belum ada `AGENTS.md`; root `AGENTS.md` kemudian ditambahkan pada governance follow-up dan sekarang menjadi aturan utama.
 - Branch Stage 0: `feat/ai-interviewer-stage-00` (sesuai kontrak `feat/ai-interviewer-stage-XX`).
 - Stack terkunci dipatuhi mulai Stage 1; Stage 0 tidak menambah dependency/migration/endpoint/UI.

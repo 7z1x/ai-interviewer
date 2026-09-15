@@ -141,8 +141,8 @@ Satu CV PDF per session (MVP).
 | `session_id` | UUID | FK → InterviewSession.id, UNIQUE(session_id) | Satu dokumen per session |
 | `original_filename` | VARCHAR(255) | NOT NULL | Hanya untuk display, tidak dipakai untuk path |
 | `mime_type` | VARCHAR(100) | NOT NULL | Harus `application/pdf` |
-| `file_size_bytes` | INT | NOT NULL, CHECK >0 | Validasi batas (mis. 5 MB) |
-| `page_count` | INT | NOT NULL | Validasi batas (mis. 10 halaman) |
+| `file_size_bytes` | INT | NOT NULL, CHECK >0 | Maksimum aplikasi MVP 5 MiB (5,242,880 bytes) |
+| `page_count` | INT | NOT NULL | Maksimum aplikasi MVP 10 halaman |
 | `status` | VARCHAR(20) | NOT NULL, CHECK IN ('uploaded','processing','ready','failed') | |
 | `pages` | JSONB | NOT NULL DEFAULT '[]' | `[{page_no, text, char_count}]` untuk evidence traceability |
 | `extracted_text` | TEXT | NULL | Gabungan teks semua halaman |

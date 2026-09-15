@@ -131,7 +131,7 @@ Perpindahan mode **hanya via environment variable**, tanpa perubahan business lo
 
 ## 6. Error Handling & Idempotency Sederhana
 
-- **Validasi**: Pydantic di boundary API; PDF: MIME + ekstensi + magic bytes + size + page count; nama file user tidak dipakai untuk path (UUID/nanoid).
+- **Validasi**: Pydantic di boundary API; PDF: MIME + ekstensi + magic bytes + maksimum 5 MiB + maksimum 10 halaman; nama file user tidak dipakai untuk path (UUID/nanoid).
 - **Error sanitasi**: response client berisi `code`, `message` aman, `details` validasi; stack trace/path/secret tidak bocor; log server pakai correlation ID (`X-Request-ID`).
 - **Status code**: 200/201 sukses, 400 validasi, 401/403 auth (Stage 9), 404 not found, 409 status transition invalid, 413 payload too large, 422 unprocessable (PDF parse), 429 rate limit (Stage 9), 500 internal (sanitized).
 - **Idempotency**: `Idempotency-Key` header untuk `POST .../answers`, `POST .../plan`, `POST .../report`; backend dedup via unique constraint `(session_id, idempotency_key)` atau `(session_id, question_id, attempt)` → duplicate request kembalikan resource existing (200) tanpa gandakan turn/report.
