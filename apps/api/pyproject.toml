@@ -1,7 +1,7 @@
 [project]
 name = "ai-interviewer-api"
 version = "0.1.0"
-description = "AI Interviewer API — Stage 1 scaffold"
+description = "AI Interviewer API — Stage 2 Database and Session API"
 requires-python = ">=3.11"
 dependencies = [
     "fastapi>=0.110",
@@ -9,6 +9,11 @@ dependencies = [
     "pydantic>=2.6",
     "pydantic-settings>=2.1",
     "httpx>=0.27",
+    "sqlalchemy[asyncio]>=2.0",
+    "asyncpg>=0.29",
+    "alembic>=1.13",
+    "psycopg2-binary>=2.9",
+    "anyio>=4",
 ]
 
 [project.optional-dependencies]
@@ -30,7 +35,11 @@ target-version = "py311"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "C4", "UP"]
-ignore = []
+ignore = ["E501", "B008"]
+
+[tool.ruff.lint.per-file-ignores]
+"alembic/**/*.py" = ["E501", "F401", "I001", "UP007", "UP035"]
+"tests/**/*.py" = ["E501"]
 
 [tool.mypy]
 python_version = "3.11"
